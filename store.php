@@ -10,6 +10,7 @@
 
 <?php
 
+// Showing Products from tables into store page 
 require('mysqli_oop_connect.php');
  $q = "select title,price,image,quantity from bookinventory ";
  $stmtt = $mysqli -> query($q);
