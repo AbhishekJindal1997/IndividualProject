@@ -1,31 +1,44 @@
 
 <html>
 <body>
+<link rel="stylesheet" href="styles.css">
 <a href="index.php">Home</a>
 <a href="store.php">Book Store</a>
-<h1>Store page</h1>
+<h1 class="headings">Check out our 
+<span class="headingStyles"> Inventory </span></h1>
+<div class="subHeading">Latest Products</div>
+<div class="linebreak"></div>
+<div class="grid-container">
+<?php
+
+// connecting mysql 
+require('mysqli_oop_connect.php');
+
+// Dispaying Products from DB 
+ $q = "select title,price,image,quantity from bookinventory ";
+ $stmtt = $mysqli -> query($q);
+ while ($row = $stmtt -> fetch_object()){
+
+    echo  "<div class = grid-item> " .
+          "<div class = grid-item-one>" . 
+         "<img class=imageWrapper src={$row ->  image}>" .
+         "</div>" .
+          "<div class = grid-item-two>". 
+         "<div class= bookTitle>" .  $row ->  title . "</div>" .  
+         "<div class= bookPrice>". "$". $row ->  price . "</div>". 
+         "<div class= bookQuantity>" . $row ->  quantity . "</div>" . 
+          "</div>" . "</div>";
+}
+?>
+
+</div>
 </body>
 </html>
 
 
-<?php
-
-// Showing Products from tables into store page 
-require('mysqli_oop_connect.php');
- $q = "select title,price,image,quantity from bookinventory ";
- $stmtt = $mysqli -> query($q);
- while ($row = $stmtt -> fetch_object()){
-    echo "<strong>"."Book Name ". "</strong>". $row ->  title . 
-         "&nbsp" . "&nbsp" . "&nbsp" .
-         "<strong>"."Book Price ". "</strong>". $row ->  price .
-         "&nbsp" . "&nbsp" . "&nbsp" .
-         "<strong>"."Quantity ". "</strong>". $row ->  quantity;
 
 
-    echo "<br>";
-}
 
 
-?>
 
 
