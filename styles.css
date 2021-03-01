@@ -6,6 +6,8 @@
 
 .grid-container {
   display: flex;
+  max-width: 95%;
+  margin: 30px auto;
 }
 
 .grid-item {
@@ -14,17 +16,17 @@
   font-size: 30px;
   width: auto;
   display: flex;
-  margin: 0 auto;
 }
 
-.grid-item-one,
-.grid-item-two {
+.grid-item-one {
   flex: 50%;
 }
 
 .grid-item-two {
   text-align: left;
   margin-left: -30px;
+  flex: 50%;
+  margin-top: 10px;
 }
 
 .imageWrapper {
@@ -34,8 +36,13 @@
 .bookTitle,
 .bookPrice,
 .bookQuantity {
-  font-size: 20px;
+  font-size: 15px;
   padding-bottom: 10px;
+}
+
+.bookTitle {
+  color: brown;
+  font-weight: bold;
 }
 
 .headings {
@@ -58,5 +65,5 @@
   width: 94%;
   margin: auto;
   background-color: black;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
