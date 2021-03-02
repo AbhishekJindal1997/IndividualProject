@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +9,7 @@
      <link rel="stylesheet" href="styles.css">
 </head>
 
-
-
 <body>
-
-
 <a href="index.php">Home</a>
 <a href="store.php">Book Store</a>
 <a href="checkOut.php">Check out</a>
@@ -26,21 +21,18 @@
 <div class="grid-container">
 <?php
 
+// Connecting to Mysql
 require("mysqli_connect.php");
-
+// Query to select all data from table
 $q = "SELECT * FROM bookinventory";
 $result = mysqli_query($dbc, $q) or die(mysql_error());
-
-
-
+// Checking if there is result in Db
 if (!$result){
     echo "ERROR: " . mysqli_error($dbc);
 }
-
+// Displaying all the result  from table
 while ($row = mysqli_fetch_assoc($result)){
 
-    
-     
          echo  "<div class = grid-item> " .
        "<div class = grid-item-one>" . 
         "<img class=imageWrapper src={$row['image']}>" .
