@@ -3,6 +3,12 @@ select * from bookauthor;
 select * from bookinventory;
 
 
-DELETE FROM bookinventory where idBooks = 7;
+create table BookInventoryOrder(
+Fname varchar(50), 
+Lname varchar(50)
+);
+
+select * from BookInventoryOrder;
+
 
 

@@ -1,9 +1,12 @@
-
-
-
-
-
-
+<?php 
+// connecting mysql
+require("mysqli_connect.php");
+// Getting id from url params
+$value=$_GET['id'];
+// saving id from url params in session
+session_start();
+$_SESSION['clickedItem'] = $value;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -19,25 +23,7 @@
 
 <h1>Check out page</h1>
 
-<form action="checkOut.php?id=" method="POST">
-
-    <p>First Name: <input type="text" name="Fname" value="<?php if (isset($_POST['Fname'])) echo $_POST['Fname']; ?>"></p>
-    <P>Last Name: <input type="text" name="Lname" value="<?php if (isset($_POST['Lname'])) echo $_POST['Lname']; ?>"></p>
-    <!-- <P> Quantity : <input type="text" name="quantity" value="<?php if (isset($_POST['quantity'])) echo $_POST['quantity']; ?>"> max available <?php echo $row['quantity'] ?> </p> -->
-
-    <p><input type="submit" name="submit" value="Buy Now"></p>
-  </form>
-
-  <?php 
-
-
-require("mysqli_connect.php");
-
-$value=$_GET['id'];
-
-$cookie_name = "clickedIem";
-$cookie_value = $value;
-setcookie($cookie_name, $cookie_value, time() + 3600 , "/individualProject" );
+<?php 
 
 $q = "SELECT * FROM bookinventory where idBooks = '$value'";
 $result = mysqli_query($dbc, $q) or die(mysql_error());
@@ -49,45 +35,51 @@ if (!$result){
 while ($row = mysqli_fetch_assoc($result)){
          echo  $row['title'] . "<br>";  
          echo "quantity Available "  . $row['quantity'] ;
+         // echo "<img class=imageWrapper src={$row['image']}>";
      }
 
+?>
 
-  
+<form action="checkOut.php?id=<?php echo $_SESSION['clickedItem'] ?>" method="POST">
+
+    <p>First Name: <input type="text" name="Fname" value="<?php if (isset($_POST['Fname'])) echo $_POST['Fname']; ?>"></p>
+    <P>Last Name: <input type="text" name="Lname" value="<?php if (isset($_POST['Lname'])) echo $_POST['Lname']; ?>"></p>
+    <p>Please select Payment option</p>
+    <input type="radio" id="credit" name="payment" value="credit">
+    <label for="credit">Credit Card</label><br>
+    <input type="radio" id="debit" name="payment" value="debit">
+    <label for="debit">Debit Card</label><br>
+    <input type="radio" id="cash" name="payment" value="cash">
+    <label for="cash">Cash</label>
+
+    <p><input type="submit" name="submit" value="Buy Now"></p>
+  </form>
+
+<?php 
+
   if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {  
 
     $Fname = mysqli_real_escape_string($dbc, $_POST['Fname']);
     $Lname = mysqli_real_escape_string($dbc, $_POST['Lname']);
-   // $quantity = mysqli_real_escape_string($dbc, $_POST['quantity']);
-  
   
     if (empty($Fname)  ) { 
-
-      echo "Fname is empty. Blank entry not allowed ";
-      //echo  "<script>location.href='checkOut.php?id=" . $_COOKIE[$cookie_name] . "'</script>" ; 
+      echo "<br>" . "Fname is empty. Blank entry not allowed ";
       die();
     }
 
     else if (empty($Lname)){
-        echo "Lname is empty. Blank entry not allowed ";
-        die();
+        echo "<br>". "Lname is empty. Blank entry not allowed ";
+        die();     
     }
 
-    // else if (empty($quantity)){
-    //     echo "Quantity is empty. Blank entry not allowed";
-    // }
-    
-    else {
-        
+    else { 
         echo "Order created " . "<br>";
         echo "Customer Name ". "$Fname " . "$Lname". "<br>";
         echo "Product Name" . "<br>"  ;
         echo "Remaining Quantity"  . "<br>"; 
         $q = "INSERT INTO BookInventoryOrder (Fname, Lname) VALUES ('$Fname', '$Lname')";
-        mysqli_query($dbc, $q) or die (mysqli_error($dbc));
-        
-      
+        mysqli_query($dbc, $q) or die (mysqli_error($dbc)); 
     }
-    
   } 
   
   ?>

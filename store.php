@@ -30,7 +30,7 @@ $result = mysqli_query($dbc, $q) or die(mysql_error());
 if (!$result){
     echo "ERROR: " . mysqli_error($dbc);
 }
-// Displaying all the result  from table
+// Displaying all the result from table
 while ($row = mysqli_fetch_assoc($result)){
 
          echo  "<div class = grid-item> " .
@@ -40,8 +40,7 @@ while ($row = mysqli_fetch_assoc($result)){
          "<div class = grid-item-two>". 
         "<a href=checkOut.php?id={$row['idBooks']} class= bookTitle>" . $row['title'] . "</a>" .  
          "<div class= bookPrice>". "$".  $row['price'] . "</div>". 
-          "<div class= bookQuantity>" . $row['quantity'] . "</div>" .
-        "<button class = add>Add to cart </button>". 
+          "<div class= bookQuantity>" . "Quantity " .  $row['quantity'] . "</div>" . 
         "</div>" . "</div>";     
      }
 
