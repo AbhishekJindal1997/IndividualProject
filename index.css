@@ -1,0 +1,162 @@
+nav {
+  background-color: #e7e6e1;
+  padding: 15px;
+  align-items: center;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 20px;
+  margin: 0px 20px;
+  color: black;
+  font-weight: 500;
+}
+
+.banner {
+  height: 500px;
+  background-color: #e7e6e1;
+  padding-top: 30px;
+  display: flex;
+  max-width: 100%;
+}
+
+.banner .bannerSection01 {
+  flex: 60%;
+  margin-left: 15%;
+  margin-top: 5%;
+  font-style: italic;
+}
+
+.bannerSection01 p {
+  font-size: 20px;
+}
+
+.banner .bannerSection02 {
+  flex: 40%;
+}
+
+.banner .bannerImg {
+  width: auto;
+  height: 500px;
+  margin-top: -10%;
+  margin-left: -20%;
+}
+
+.banner .bannerImg1 {
+  height: 400px;
+  width: 400px;
+}
+
+.banner div {
+  font-size: 40px;
+  margin-left: 30px;
+}
+
+.bannerBtn {
+  position: absolute;
+  top: 31%;
+  left: 30%;
+}
+
+.bannerBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.newProducts .heading {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.newProductsQuote {
+  justify-content: center;
+  text-align: center;
+  max-width: 40%;
+  margin: auto;
+}
+
+.newProductsImagesContainer {
+  height: 270px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+}
+
+.newProductsImagesContainer img {
+  flex: 25%;
+  padding: 0 20px;
+}
+
+.contactUs {
+  margin-top: 60px;
+  height: auto;
+  padding: 10px 0;
+  background-color: #e7e6e1;
+  display: flex;
+}
+.contactUs .contactUsSection {
+  flex: 50%;
+}
+
+.contactUs h3 {
+  text-align: center;
+}
+
+.contactUsSection img {
+  max-width: 120%;
+  margin-left: -20%;
+  height: 380px;
+}
+
+.contactUs form {
+  width: 70%;
+  padding: 20px;
+  z-index: 1;
+  background-color: white;
+  margin-left: 10%;
+}
+
+.description {
+  height: 100px;
+}
+
+.styling {
+  color: #0d54be;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  background-color: rgb(22, 22, 37);
+  color: white;
+  padding-bottom: 30px;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  height: 150px;
+  display: flex;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+
+.footer .footerSection {
+  flex: 30%;
+  margin: 10px;
+  padding: 10px;
+}
+
+.copyright {
+  margin-top: -20px;
+}
+
+.invHeading {
+  text-align: center;
+  font-size: 40px;
+  color: #0d54be;
+  margin-top: 20px;
+}

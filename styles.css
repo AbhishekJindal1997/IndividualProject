@@ -30,7 +30,8 @@
 }
 
 .imageWrapper {
-  width: 50%;
+  width: 60%;
+  size: stretch;
 }
 
 .bookTitle,
@@ -40,18 +41,14 @@
   padding-bottom: 10px;
 }
 
-.bookTitle {
-  color: brown;
+.bookPrice {
+  color: red;
   font-weight: bold;
 }
 
-.headings {
-  text-align: center;
-  color: rgb(61, 51, 51);
-}
-
-.headingStyles {
-  color: brown;
+.bookTitle {
+  color: rgb(49, 51, 70);
+  font-weight: bold;
 }
 
 .subHeading {

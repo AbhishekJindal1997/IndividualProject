@@ -15,14 +15,18 @@ $_SESSION['clickedItem'] = $value;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
 
+<nav>
 <a href="index.php">Home</a>
 <a href="store.php">Book Store</a>
+</nav>
 
-<h1>Check out page</h1>
 
+<h2 class="checkout">Proceed to Checkout</h2>
 <?php 
 
 $q = "SELECT * FROM bookinventory where idBooks = '$value'";
@@ -33,15 +37,19 @@ if (!$result){
 }
 
 while ($row = mysqli_fetch_assoc($result)){
-         echo  $row['title'] . "<br>";  
-         echo "quantity Available "  . $row['quantity'] ;
-         // echo "<img class=imageWrapper src={$row['image']}>";
+        echo "<div class=selected>";
+         echo   "<div class=selectedBook>" . $row['title'] . "</div>";  
+         echo  "<img class=imageWrapper src={$row['image']} max-width='100' height='150'>" ;
+         echo   "<br>". "Total Price " . "<strong>" . $row['price'] . "</strong>";
+         echo "<div>" . "Quantity Available: " . "<strong>" . $row['quantity'] . "</strong>".  "</div>";
+         echo   "</div>";
+       
      }
 
 ?>
 
 <form action="checkOut.php?id=<?php echo $_SESSION['clickedItem'] ?>" method="POST">
-
+    <div  class="checkoutForm">
     <p>First Name: <input type="text" name="Fname" value="<?php if (isset($_POST['Fname'])) echo $_POST['Fname']; ?>"></p>
     <P>Last Name: <input type="text" name="Lname" value="<?php if (isset($_POST['Lname'])) echo $_POST['Lname']; ?>"></p>
     <p>Please select Payment option</p>
@@ -51,8 +59,9 @@ while ($row = mysqli_fetch_assoc($result)){
     <label for="debit">Debit Card</label><br>
     <input type="radio" id="cash" name="payment" value="cash">
     <label for="cash">Cash</label>
-
+    
     <p><input type="submit" name="submit" value="Buy Now"></p>
+    </div>
   </form>
 
 <?php 
@@ -64,18 +73,20 @@ while ($row = mysqli_fetch_assoc($result)){
     $Lname = mysqli_real_escape_string($dbc, $_POST['Lname']);
   
     if (empty($Fname)  ) { 
-      echo "<br>" . "Fname is empty. Blank entry not allowed ";
+      echo "<div align=center>" . "<strong>".  "First Name is empty. Blank entry not allowed " . "</strong>";
       die();
     }
 
     else if (empty($Lname)){
-        echo "<br>". "Lname is empty. Blank entry not allowed ";
+        echo "<div align=center>" . "<strong>".  "Last Name is empty. Blank entry not allowed " . "</strong>";
         die();     
     }
 
     else { 
+      echo "<div align=center>" . "<strong>";
         echo "Order created " . "<br>";
-        echo "Customer Name ". "$Fname " . "$Lname". "<br>";
+        echo "Customer Name:  ". "$Fname " . "$Lname". "<br>";
+        echo "</strong>" . "</div>";
         $q = "INSERT INTO BookInventoryOrder (Fname, Lname) VALUES ('$Fname', '$Lname')";
         mysqli_query($dbc, $q) or die (mysqli_error($dbc)); 
         
@@ -90,8 +101,10 @@ while ($row = mysqli_fetch_assoc($result)){
         }
         // Displaying all the result from table
         while ($row = mysqli_fetch_assoc($result)){
-          echo "Product Name " . $row['title'] . "<br>"  ;
-          echo "REMAINING QUANTITY " . $row['quantity'];
+          echo "<div align=center>" . "<strong>";
+          echo "Product Name " .filter_var($row['title'], FILTER_SANITIZE_STRING) . "<br>"  ;
+          echo "Remaining Quantity " . $row['quantity'];
+          echo "</strong>" . "</div>";
 
         }
         
@@ -99,6 +112,30 @@ while ($row = mysqli_fetch_assoc($result)){
   } 
   
   ?>
+
+  <!-- Footer -->
+<footer>
+  <div class="footer">
+<div class="footerSection">
+  <div>Book Store</div>
+  <div>Home</div>
+  <div>Store</div>
+</div>
+<div class="footerSection">
+<div>Contact</div>
+  <div>abhishek.jindal63@gmail.com</div>
+  <div>+1 226-978-8703</div>
+</div>
+<div class="footerSection">
+<div>Address</div>
+  <div>37 Princess Street East </div>
+  <div>Waterloo</div>
+</div>
+</div>
+<div class="copyright">© Copyright 2021 by Abhishek Jidnal</div>
+
+
+</footer>
     
 </body>
 </html>

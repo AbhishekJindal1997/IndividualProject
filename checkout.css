@@ -1,0 +1,45 @@
+.checkout {
+  margin-top: 10px;
+  text-align: center;
+  color: #0d54be;
+}
+
+.selectedBook {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.selected {
+  padding-top: 20px;
+  width: 350px;
+  margin: 0px auto;
+  font-size: 20px;
+}
+
+.checkoutForm {
+  margin: 0 auto;
+
+  margin-left: 30%;
+  width: auto;
+  padding: 20px;
+}
+
+.checkoutForm p {
+  font-weight: bold;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.checkoutForm p input[type="text"] {
+  height: 30px;
+  width: 200px;
+}
+
+.checkoutForm p input[type="submit"] {
+  background-color: #0d54be;
+  padding: 10px;
+  color: white;
+  width: 70px;
+  border: 0px;
+  border-radius: 10px;
+}

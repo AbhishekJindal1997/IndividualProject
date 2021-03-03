@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`BookInventory` (
   `idBooks` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
   `price` FLOAT NOT NULL,
-  `image` VARCHAR(45) NOT NULL,
+  `image` VARCHAR(500) NOT NULL,
   `quantity` VARCHAR(45) NOT NULL,
   `Author_idAuthor` INT NOT NULL,
   PRIMARY KEY (`idBooks`, `Author_idAuthor`),
@@ -44,6 +44,11 @@ CREATE TABLE IF NOT EXISTS `bookstore`.`BookInventory` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+create table BookInventoryOrder(
+Fname varchar(50), 
+Lname varchar(50)
+);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

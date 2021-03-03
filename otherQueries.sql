@@ -1,12 +1,15 @@
 select * from bookauthor;
-select * from bookinventory;
+
 select * from BookInventoryOrder;
 
+select * from bookinventory;
 
-create table BookInventoryOrder(
-Fname varchar(50), 
-Lname varchar(50)
-);
+update bookinventory 
+set quantity = 29
+where idBooks = 1;
+
+
+
 
 
 
