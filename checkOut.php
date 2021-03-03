@@ -56,6 +56,7 @@ while ($row = mysqli_fetch_assoc($result)){
   </form>
 
 <?php 
+   
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {  
 
@@ -75,10 +76,25 @@ while ($row = mysqli_fetch_assoc($result)){
     else { 
         echo "Order created " . "<br>";
         echo "Customer Name ". "$Fname " . "$Lname". "<br>";
-        echo "Product Name" . "<br>"  ;
-        echo "Remaining Quantity"  . "<br>"; 
         $q = "INSERT INTO BookInventoryOrder (Fname, Lname) VALUES ('$Fname', '$Lname')";
         mysqli_query($dbc, $q) or die (mysqli_error($dbc)); 
+        
+        $q1 = "UPDATE bookinventory SET quantity = quantity-1 WHERE idBooks = '$value' " ;
+        mysqli_query($dbc, $q1) or die (mysqli_error($dbc)); 
+
+        $q3 = "SELECT * FROM bookinventory WHERE idBooks = '$value' ";
+        $result = mysqli_query($dbc, $q3) or die(mysql_error());
+        // Checking if there is result in Db
+        if (!$result){
+            echo "ERROR: " . mysqli_error($dbc);
+        }
+        // Displaying all the result from table
+        while ($row = mysqli_fetch_assoc($result)){
+          echo "Product Name " . $row['title'] . "<br>"  ;
+          echo "REMAINING QUANTITY " . $row['quantity'];
+
+        }
+        
     }
   } 
   
