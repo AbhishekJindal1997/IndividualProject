@@ -28,14 +28,14 @@ $_SESSION['clickedItem'] = $value;
 
 <h2 class="checkout">Proceed to Checkout</h2>
 <?php 
-
+// Selecting product selected by user
 $q = "SELECT * FROM bookinventory where idBooks = '$value'";
 $result = mysqli_query($dbc, $q) or die(mysql_error());
-
+// checking if the product exists
 if (!$result){
     echo "ERROR: " . mysqli_error($dbc);
 }
-
+// Displaying  selected product
 while ($row = mysqli_fetch_assoc($result)){
         echo "<div class=selected>";
          echo   "<div class=selectedBook>" . $row['title'] . "</div>";  
@@ -87,12 +87,13 @@ while ($row = mysqli_fetch_assoc($result)){
         echo "Order created " . "<br>";
         echo "Customer Name:  ". "$Fname " . "$Lname". "<br>";
         echo "</strong>" . "</div>";
+        // Inserting the user info into Book Inventory order
         $q = "INSERT INTO BookInventoryOrder (Fname, Lname) VALUES ('$Fname', '$Lname')";
         mysqli_query($dbc, $q) or die (mysqli_error($dbc)); 
-        
+        // Updating the table => reducing quantity by 1
         $q1 = "UPDATE bookinventory SET quantity = quantity-1 WHERE idBooks = '$value' " ;
         mysqli_query($dbc, $q1) or die (mysqli_error($dbc)); 
-
+        
         $q3 = "SELECT * FROM bookinventory WHERE idBooks = '$value' ";
         $result = mysqli_query($dbc, $q3) or die(mysql_error());
         // Checking if there is result in Db
